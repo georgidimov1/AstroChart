@@ -52,6 +52,7 @@ export interface Settings {
     SYMBOL_NNODE: string;
     SYMBOL_SNODE: string;
     SYMBOL_FORTUNE: string;
+    SYMBOL_CERES: string;
     SYMBOL_AS: string;
     SYMBOL_DS: string;
     SYMBOL_MC: string;

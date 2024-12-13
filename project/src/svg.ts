@@ -78,6 +78,8 @@ class SVG {
         return this.snode(x, y)
       case this.settings.SYMBOL_FORTUNE:
         return this.fortune(x, y)
+      case this.settings.SYMBOL_CERES:
+        return this.ceres(x, y)
       case this.settings.SYMBOL_ARIES:
         return this.aries(x, y)
       case this.settings.SYMBOL_TAURUS:
@@ -692,6 +694,43 @@ class SVG {
 
     return wrapper
   }
+
+  /*
+   * Ceres symbol path
+   * @private
+   *
+   * @param {int} x
+   * @param {int} y
+   *
+   * @return {SVG g}
+   */
+  ceres(x: number, y: number): Element {
+    // center symbol
+    const xShift = -10
+    const yShift = -8
+    x = Math.round(x + (xShift * this.settings.SYMBOL_SCALE))
+    y = Math.round(y + (yShift * this.settings.SYMBOL_SCALE))
+
+    const wrapper = document.createElementNS(this.context.root.namespaceURI, 'g')
+
+    wrapper.setAttribute('transform', 'translate(' + (-x * (this.settings.SYMBOL_SCALE - 1)) + ',' + (-y * (this.settings.SYMBOL_SCALE - 1)) + ') scale(' + this.settings.SYMBOL_SCALE + ')')
+
+    const path1 = document.createElementNS(this.context.root.namespaceURI, 'path')
+    path1.setAttribute('d', 'M11.7435 6.5C9.48022 6.5 7.63013 8.26917 7.50073 10.5H7C7.13 7.99286 9.20398 6 11.7435 6C14.3669 6 16.4935 8.12665 16.4935 10.75C16.4935 13.2895 14.5006 15.3635 11.9935 15.4935V17.75H13.5V18.25H11.9935V20H11.5L11.4965 18.25H10V17.75H11.4955L11.4935 16.75V14.9928C11.5763 14.9976 11.6595 15 11.7435 15C14.0907 15 15.9935 13.0972 15.9935 10.75C15.9935 8.40277 14.0907 6.5 11.7435 6.5Z')
+    const ceresGroup = document.createElementNS(this.context.root.namespaceURI, 'g')
+    ceresGroup.setAttribute('transform', 'translate(' + x + ',' + y + ')')
+    ceresGroup.appendChild(path1)
+
+    wrapper.setAttribute('stroke', this.settings.POINTS_COLOR)
+    wrapper.setAttribute('stroke-width', this.settings.POINTS_STROKE.toString())
+    wrapper.setAttribute('fill', 'none')
+    wrapper.appendChild(ceresGroup)
+
+
+    return wrapper
+  }
+
+   
 
   /*
  * Aries symbol path
