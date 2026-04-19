@@ -48,12 +48,12 @@ export interface Settings {
     SYMBOL_NEPTUNE: string;
     SYMBOL_PLUTO: string;
     SYMBOL_CHIRON: string;
-    SYMBOL_VERTEX: string;
     SYMBOL_LILITH: string;
     SYMBOL_NNODE: string;
     SYMBOL_SNODE: string;
     SYMBOL_FORTUNE: string;
     SYMBOL_CERES: string;
+    SYMBOL_VERTEX: string;
     SYMBOL_AS: string;
     SYMBOL_DS: string;
     SYMBOL_MC: string;
