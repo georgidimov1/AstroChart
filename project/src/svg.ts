@@ -78,6 +78,8 @@ class SVG {
         return this.snode(x, y)
       case this.settings.SYMBOL_FORTUNE:
         return this.fortune(x, y)
+      case this.settings.SYMBOL_VERTEX:
+        return this.vertex(x, y)
       case this.settings.SYMBOL_CERES:
         return this.ceres(x, y)
       case this.settings.SYMBOL_ARIES:
@@ -730,6 +732,62 @@ class SVG {
     return wrapper
   }
 
+  /*
+ * Vertex symbol path
+ * @private
+ *
+ * @param {int} x
+ * @param {int} y
+ *
+ * @return {SVG g}
+ */
+  vertex(x: number, y: number): Element {
+    // center symbol
+    const xShift = -10
+    const yShift = -8
+    x = Math.round(x + (xShift * this.settings.SYMBOL_SCALE))
+    y = Math.round(y + (yShift * this.settings.SYMBOL_SCALE))
+
+    const wrapper = document.createElementNS(this.context.root.namespaceURI, 'g')
+
+    wrapper.setAttribute(
+      'transform',
+      'translate(' +
+        (-x * (this.settings.SYMBOL_SCALE - 1)) +
+        ',' +
+        (-y * (this.settings.SYMBOL_SCALE - 1)) +
+        ') scale(' +
+        this.settings.SYMBOL_SCALE +
+        ')'
+    )
+
+    const vertexGroup = document.createElementNS(this.context.root.namespaceURI, 'g')
+    vertexGroup.setAttribute('transform', 'translate(' + x + ',' + y + ')')
+
+    // V
+    const path1 = document.createElementNS(this.context.root.namespaceURI, 'path')
+    path1.setAttribute('d', 'M4 2 L8 14 L12 2')
+
+    // x
+    const path2 = document.createElementNS(this.context.root.namespaceURI, 'path')
+    path2.setAttribute('d', 'M12.5 6 L18.5 12')
+
+    const path3 = document.createElementNS(this.context.root.namespaceURI, 'path')
+    path3.setAttribute('d', 'M18.5 6 L12.5 12')
+
+    vertexGroup.appendChild(path1)
+    vertexGroup.appendChild(path2)
+    vertexGroup.appendChild(path3)
+
+    wrapper.setAttribute('stroke', this.settings.POINTS_COLOR)
+    wrapper.setAttribute('stroke-width', this.settings.POINTS_STROKE.toString())
+    wrapper.setAttribute('stroke-linecap', 'round')
+    wrapper.setAttribute('stroke-linejoin', 'round')
+    wrapper.setAttribute('fill', 'none')
+    wrapper.appendChild(vertexGroup)
+
+    return wrapper
+  }
    
 
   /*
